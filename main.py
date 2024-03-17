@@ -13,7 +13,7 @@ REDIS_LINK = os.environ['REDIS_URL']
 
 config = {
   "CACHE_TYPE": "redis",
-  "CACHE_DEFAULT_TIMEOUT": 60,
+  "CACHE_DEFAULT_TIMEOUT": 61,
   "CACHE_REDIS_URL": REDIS_LINK
 }
 
@@ -32,7 +32,7 @@ def make_cache_key(*args, **kwargs):
 @app.route('/actions')
 @cache.memoize(make_name=make_cache_key)
 def actions():
-  query = QueryBase(name="gas", query_id=3448534)
+  query = QueryBase(name="gas", query_id=3481868)
 
   dune = DuneClient(DUNE_API_KEY)
   results = dune.refresh_into_dataframe(query)
