@@ -32,7 +32,7 @@ def make_cache_key(*args, **kwargs):
 @app.route('/actions')
 @cache.memoize(make_name=make_cache_key)
 def actions():
-  query = QueryBase(name="gas", query_id=3481868)
+  query = QueryBase(name="gas", query_id=3448534)
 
   dune = DuneClient(DUNE_API_KEY)
   results = dune.refresh_into_dataframe(query)
