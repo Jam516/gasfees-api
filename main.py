@@ -13,7 +13,7 @@ REDIS_LINK = os.environ['REDIS_URL']
 
 config = {
   "CACHE_TYPE": "redis",
-  "CACHE_DEFAULT_TIMEOUT": 600,
+  "CACHE_DEFAULT_TIMEOUT": 60,
   "CACHE_REDIS_URL": REDIS_LINK
 }
 
@@ -35,8 +35,8 @@ def actions():
   query = QueryBase(name="gas", query_id=3481868)
 
   dune = DuneClient(DUNE_API_KEY)
-  results = dune.refresh_into_dataframe(query)
-  return results.to_json(orient='records')
+  results = dune.get_latest_result(query)
+  return results.result.rows
 
 
 if __name__ == '__main__':
