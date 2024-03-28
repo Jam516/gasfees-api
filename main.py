@@ -33,7 +33,16 @@ def make_cache_key(*args, **kwargs):
 @cache.memoize(make_name=make_cache_key)
 def actions():
   query = QueryBase(name="gas", query_id=3448534)
+  dune = DuneClient(DUNE_API_KEY)
+  results = dune.get_latest_result(query)
+  return results.result.rows
 
+@app.route('/chain')
+@cache.memoize(make_name=make_cache_key)
+def chain():
+  chain = request.args.get('chain', 'optimism')
+  
+  query = QueryBase(name="gas", query_id=3569863)
   dune = DuneClient(DUNE_API_KEY)
   results = dune.get_latest_result(query)
   return results.result.rows
