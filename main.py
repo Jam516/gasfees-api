@@ -40,11 +40,12 @@ def actions():
 @app.route('/chain')
 @cache.memoize(make_name=make_cache_key)
 def chain():
-  chain = request.args.get('chain', 'optimism')
+  chain_name  = request.args.get('chain', 'optimism')
   
   query = QueryBase(name="gas", query_id=3569863)
   dune = DuneClient(DUNE_API_KEY)
   results = dune.get_latest_result(query)
+  filtered_rows = [row for row in results.result.rows if row['chain'] == chain_name]
   return results.result.rows
 
 
