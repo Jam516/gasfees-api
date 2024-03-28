@@ -40,7 +40,7 @@ def actions():
 @app.route('/chain')
 @cache.memoize(make_name=make_cache_key)
 def chain():
-  chain_name  = request.args.get('chain', 'optimism')
+  chain_name = request.args.get('chain_name', 'optimism')
   
   query = QueryBase(name="gas", query_id=3569863)
   dune = DuneClient(DUNE_API_KEY)
