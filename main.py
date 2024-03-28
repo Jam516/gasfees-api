@@ -46,7 +46,7 @@ def chain():
   dune = DuneClient(DUNE_API_KEY)
   results = dune.get_latest_result(query)
   filtered_rows = [row for row in results.result.rows if row['chain'] == chain_name]
-  return results.result.rows
+  return filtered_rows
 
 
 if __name__ == '__main__':
